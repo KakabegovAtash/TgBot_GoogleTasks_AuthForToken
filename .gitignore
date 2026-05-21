@@ -1,0 +1,19 @@
+# Google API Credentials & Tokens
+credentials.json
+token.json
+
+# Environment variables
+.env
+
+# Cloudflare Tunnel Binary
+cloudflared-linux-amd64
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/

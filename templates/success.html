@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Успешно!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffb7b2;
+            --secondary-pink: #ffdac1;
+            --bg-gradient-start: #f8cdda;
+            --text-dark: #4a4a4a;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.7);
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), #fdf2f8, var(--secondary-pink));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dark);
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 50px 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(255, 183, 178, 0.37);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 20px rgba(168, 230, 207, 0.5);
+            position: relative;
+        }
+
+        .success-icon::after {
+            content: '✓';
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            animation: checkmark 0.5s ease-in-out 0.6s forwards;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        @keyframes checkmark {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #d15c7e;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 0.8s forwards;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #6d6d6d;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff9a9e;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="success-icon"></div>
+        <h1>Ура! Готово 🎉</h1>
+        <p>Доступ получен!. Теперь можешь закрыть эту страничку. Спасибо! 💕</p>
+    </div>
+
+    <script>
+        // Simple confetti effect
+        const colors = ['#ff9a9e', '#fecfef', '#a8e6cf', '#ffdac1'];
+        for (let i = 0; i < 50; i++) {
+            let confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = -10 + 'px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            document.body.appendChild(confetti);
+
+            let duration = Math.random() * 3 + 2;
+            confetti.animate([
+                { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
+                { transform: `translate3d(${Math.random() * 200 - 100}px, 100vh, 0) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+            ], {
+                duration: duration * 1000,
+                easing: 'cubic-bezier(.37,0,.63,1)',
+                delay: Math.random() * 2000,
+                fill: 'forwards'
+            });
+        }
+    </script>
+</body>
+
+</html>

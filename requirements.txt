@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+google-auth-oauthlib
+jinja2
+python-multipart
+itsdangerous
+python-dotenv
